@@ -1,4 +1,5 @@
 # CAPSTONE-PROJECT-ON-PREDICTING-BUILDING-INSURANCE-CLAIM
+
 ## PROJECT OVERVIEW: Predictive model for identifying buildings likely to file insurance claims during coverage. Uses historical data, 
 SMOTE for class imbalance, and XGBoost with hyperparameter tuning. Helps Olusola Insurance improve underwriting, assess risk, and reduce 
 losses through data-driven decisions
@@ -17,34 +18,91 @@ based on building characteristics and historical claim data.
 - Responsible for end-to-end pipeline development including data preprocessing, EDA, feature engineering, model training, evaluation,
   and deployment preparation.
 
- ## Methodology
- 
-- Data Preprocessing: Handling missing values, encoding categorical variables, and scaling.
-- Exploratory Data Analysis (EDA): Visualizing distributions, correlations, and class imbalance.
-- Feature Engineering: Creating new features to enhance model performance.
-- Class Imbalance Handling: Applied SMOTE to address ~3.5:1 imbalance (non-claims to claims).
-- Modeling: Trained and compared multiple models including Random Forest and XGBoost.
-- Hyperparameter Tuning: Used RandomizedSearchCV for optimal performance.
-- Evaluation Metrics: Accuracy, Precision, Recall, F1-score, Confusion Matrix, ROC-AUC.
+### **METHODOLOGY**
+
+1. Data Preprocessing
+   
+- Converted boolean columns to integers
+- Dropped datetime columns (e.g., Date_of_Occupancy)
+- One-hot encoded categorical variables
+- Handled class imbalance using SMOTE
   
-##  Results
+2. **Model Experiments**
+   
+- Random Forest (baseline)
+- Random Forest + SMOTE
+- XGBoost + SMOTE
+- XGBoost + SMOTE + GridSearchCV
+- Random Forest with Class Weighting
+- **XGBoost + SMOTE + RandomizedSearchCV (best-performing model)**
+  
+3. **Evaluation Metrics**
+4. - Accuracy
+- Precision, Recall, F1-score (especially for Class 1)
+- Confusion Matrix
+- AUC-ROC Curve
 
-- The final model — an **XGBoost classifier enhanced with SMOTE** and optimized through hyperparameter tuning — demonstrated strong predictive performance. 
-Notably, it significantly improved recall and F1-score for the minority class (claims), making it a valuable tool for proactive risk assessment and 
-more informed underwriting decisions at Olusola Insurance.
+ ## MODEL COMPARISION SUMMARY
+ 
+| Model | Recall (Class 1) | F1 Score | 
+| Random Forest (baseline) | 11% | 0.19 | 
+| RF + SMOTE | 20% | 0.30 | 
+| XGBoost + SMOTE | 24% | 0.32 | 
+| XGBoost + SMOTE + GridSearchCV | 29% | 0.37 | 
+| RF with Class Weighting | 30% | 0.34 | 
+| **XGBoost + SMOTE + RandomizedSearchCV | 43% | 0.44 |** 
+8### CONCLUSION
 
- Project Structure
-IRENEDSMLCAPTONEPROJECT
-├── Train_data.csv
-├── Variable Description.csv
-├── xgb_smote_pipeline.ipynb
-├── irenecapstoneprojectdsml.ipynb
-├── irenecapstoneprojectdsml.html
-└── README.md
+**The XGBoost + SMOTE + RandomizedSearchCV pipeline significantly improved claim detection performance,
+especially in recall and F1-score for the minority class. This model is well-suited for identifying 
+high-risk policies and can serve as a foundation for proactive risk mitigation strategies at Olusola Insurance**
 
 
-# Acknowledgment
-This project was completed as part of the Data Science & Machine Learning Capstone under a scholarship awarded by AINOW, empowered by The Incubator Hub.
-Special thanks to instructors Mr. Isaac Odeajo and Mr. Ezekiel Adebayo Ogundepo for their invaluable guidance and support.
-📅 Date
-January 15, 2026
+
+
+
+## CONFUSION MATRIX INSIGHT 
+- True Negatives (968): Strong performance in identifying non-claims
+- True Positives (122): Moderate success in detecting actual claims
+- False Negatives (216): Many claims missed — recall still a challenge
+- False Positives (105): Some non-claims flagged incorrectly
+ The model is reliable at ruling out non-claims but needs improvement in catching all true claims.
+
+
+ **AUC-ROC Curve Insight**
+ 
+- AUC Score: 0.7354
+- The ROC curve shows strong separation from the random baseline
+- Indicates good overall discrimination between claim and non-claim classes
+
+ ## THRESHOLD TUNING (Threshold = 0.3)
+ 
+- Purpose: Increase sensitivity to high-risk policies
+- Results:
+- Recall (Class 1): 96%
+- Precision (Class 1): 26%
+- Accuracy: 33%
+- Insight: Excellent for early warning systems or triage, though with high false positives
+
+
+ ## Model Deployment
+- Final model saved as: xgb_smote_pipeline.pkl
+- Includes:
+- SMOTE resampling logic
+- Tuned XGBoost classifier
+- RandomizedSearchCV best parameters
+- Ready for integration into production systems or APIs
+  
+ # CONCLUSION
+- The **XGBoost + SMOTE + RandomizedSearchCV pipeline** significantly improved claim detection performance, especially in recall and 
+F1-score for the minority class. This model is well-suited for identifying high-risk policies and can serve as a foundation for
+
+## ACKNOWLEDGEMENT 
+
+I would like to express my sincere gratitude to AINOW and The Incubator Hub for awarding me this scholarship and providing the platform to 
+grow my skills in data science and machine learning. Special thanks to my course instructors, **. Isaac Odeajo and Mr. Ezekiel Adebayo Ogundepo**,
+for their expert guidance, mentorship, and unwavering support throughout this capstone journey. Their insights and encouragement were 
+instrumental in the successful completion of this project.
+
+
+proactive risk mitigation strategies at Olusola Insurance
