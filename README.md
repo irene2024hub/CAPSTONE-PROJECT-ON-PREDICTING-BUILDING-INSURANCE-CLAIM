@@ -100,9 +100,7 @@ F1-score for the minority class. This model is well-suited for identifying high-
 ## ACKNOWLEDGEMENT 
 
 I would like to express my sincere gratitude to AINOW and The Incubator Hub for awarding me this scholarship and providing the platform to 
-grow my skills in data science and machine learning. Special thanks to my course instructors, **. Isaac Odeajo and Mr. Ezekiel Adebayo Ogundepo**,
-for their expert guidance, mentorship, and unwavering support throughout this capstone journey. Their insights and encouragement were 
-instrumental in the successful completion of this project.
+grow my skills in data science and machine learning. Special thanks to my course instructors, **. Isaac Odeajo and Mr. Ezekiel Adebayo Ogundepo**,for their expert guidance, mentorship, and unwavering support throughout this capstone journey. Their insights and encouragement were instrumental in the successful completion of this project.
 
 
 proactive risk mitigation strategies at Olusola Insurance
