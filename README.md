@@ -127,9 +127,24 @@ EDA focused on understanding both the shape of individual features and how they 
 
 **Feature distributions** across the dataset showed that most buildings are small-to-mid-sized, insured for the full year, and concentrated in occupancy years from the mid-1900s onward, with claims making up a clear minority of records.
 
+**Claim distribution:** the dataset is imbalanced — most buildings never file a claim, which is exactly why SMOTE was necessary later in the pipeline.
+
+<div align="center"><img src="assets/claim_distribution.png" width="500" alt="Claim distribution: 77.2% no claim vs 22.8% claim"></div>
+
+**Settlement split:** buildings are almost evenly divided between Urban and Rural locations.
+
+<div align="center"><img src="assets/settlement_distribution.png" width="500" alt="Settlement distribution: 50.4% Urban vs 49.6% Rural"></div>
+
+**Feature distributions** across the dataset showed that most buildings are small-to-mid-sized, insured for the full year, and concentrated in occupancy years from the mid-1900s onward, with claims making up a clear minority of records.
+
+<div align="center"><img src="assets/feature_distributions.png" width="700" alt="Distribution of key numeric features"></div>
+
 **Claim vs. no-claim comparisons** (via box plots) showed that buildings which went on to file a claim tended to have **larger building dimensions** and a higher median building type, suggesting size and structure type carry real signal for risk.
 
-*(Suggested image placement: `assets/feature_distributions.png`, `assets/boxplots_by_claim.png`, `assets/claim_distribution.png`, `assets/settlement_distribution.png`)*
+<div align="center">
+<img src="assets/boxplots_by_claim_1.png" width="380" alt="Box plots: YearOfObservation, Insured Period, Building Dimension by claim">
+<img src="assets/boxplots_by_claim_2.png" width="380" alt="Box plots: Windows, Building Type, Occupancy Year by claim">
+</div>
 
 ## 🧹 Data Cleaning & Preprocessing
 
@@ -203,7 +218,7 @@ colsample_bytree: 0.8
 - **AUC-ROC ≈ 0.71** — the model shows solid separation between claim and non-claim buildings, well above the random-guess baseline.
 - The model correctly rules out the majority of safe buildings while catching nearly half of actual claims — a strong improvement over every baseline tested.
 
-*(Suggested image: `assets/confusion_matrix_roc.png`)*
+<div align="center"><img src="assets/confusion_matrix_roc.png" width="550" alt="Confusion matrix heatmap and ROC curve for the deployed XGBoost model"></div>
 
 ## 🌟 Feature Importance
 
@@ -213,7 +228,10 @@ Two views were generated — one from the Random Forest baseline, one from the f
 
 **XGBoost (final model)** ranked **Settlement**, **Garden**, and **Number of Windows** highest — suggesting location type and property amenities are strong differentiators once the model has been tuned and balanced.
 
-*(Suggested images: `assets/rf_feature_importance.png`, `assets/xgb_feature_importance.png`)*
+<div align="center">
+<img src="assets/rf_feature_importance.png" width="380" alt="Random Forest feature importance">
+<img src="assets/xgb_feature_importance.png" width="380" alt="XGBoost feature importance">
+</div>
 
 ## 🎚 Threshold Tuning
 
@@ -266,6 +284,8 @@ The final tuned pipeline is saved as **`xgb_smote_pipeline.pkl`**, bundling:
 
 This pipeline is ready for integration into a production scoring service or API, taking raw building/policy features as input and returning a claim-probability score.
 
+<div align="center"><img src="assets/deployment_pipeline.png" width="400" alt="Deployed pipeline: RandomizedSearchCV best estimator with SMOTE and XGBClassifier"></div>
+
 ## 🧠 Key Skills Demonstrated
 
 - End-to-end ML pipeline design (preprocessing → modeling → evaluation → deployment)
@@ -282,6 +302,3 @@ This pipeline is ready for integration into a production scoring service or API,
 
 Sincere gratitude to **AINOW** and **The Incubator Hub** for the scholarship and platform that made this capstone possible, and to course instructors **Isaac Odeajo** and **Ezekiel Adebayo Ogundepo** for their mentorship and guidance throughout the project.
 
----
-
-*(Insert dashboard/demo screenshot here, if available)*
