@@ -1,11 +1,23 @@
-# 🏢 Predicting Building Insurance Claims for Olusola Insurance
+<div align="center">
 
-**A machine learning pipeline that flags high-risk buildings before a claim is ever filed — turning years of policy history into a proactive underwriting tool.**
+# 🏢 PREDICTING BUILDING INSURANCE CLAIMS
+### for Olusola Insurance
 
-![Python](https://img.shields.io/badge/Python-3.x-blue)
-![XGBoost](https://img.shields.io/badge/Model-XGBoost-brightgreen)
-![SMOTE](https://img.shields.io/badge/Imbalance-SMOTE-orange)
-![Status](https://img.shields.io/badge/Status-Complete-success)
+**Flagging high-risk buildings before a claim is ever filed — turning years of policy history into a proactive underwriting weapon.**
+
+![Python](https://img.shields.io/badge/Python-3.x-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![XGBoost](https://img.shields.io/badge/Model-XGBoost-2E8B57?style=for-the-badge)
+![SMOTE](https://img.shields.io/badge/Imbalance-SMOTE-FF6B35?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Complete-00C853?style=for-the-badge)
+![Recall](https://img.shields.io/badge/Recall-43%25-critical?style=for-the-badge)
+![AUC](https://img.shields.io/badge/AUC--ROC-0.71-blueviolet?style=for-the-badge)
+
+</div>
+
+<br>
+
+> ### ⚡ The Bottom Line
+> A tuned **XGBoost + SMOTE** pipeline more than **doubled claim-detection recall** versus the baseline model — from 11% to 43% — giving Olusola Insurance an early-warning signal on risk that didn't exist before.
 
 ---
 
@@ -146,19 +158,24 @@ Each model was evaluated with a full classification report, confusion matrix, an
 ## 📈 Model Comparison
 
 | Model | Recall (Class 1) | F1-Score (Class 1) | Accuracy |
-|---|---|---|---|
+|---|:---:|:---:|:---:|
 | Random Forest (baseline) | 11% | 0.19 | 78.4% |
 | Random Forest + SMOTE | 20% | 0.30 | 78.1% |
 | XGBoost + SMOTE | 24% | 0.32 | 75.8% |
 | XGBoost + SMOTE + GridSearchCV | 29% | 0.37 | 76.3% |
 | Random Forest with Class Weighting | 30% | 0.34 | 72.3% |
-| **XGBoost + SMOTE + RandomizedSearchCV** | **43%** | **0.44** | 74.3% |
+| 🏆 **XGBoost + SMOTE + RandomizedSearchCV** | **43%** | **0.44** | 74.3% |
 
-> **Why not the highest-accuracy model?** Accuracy is misleading on imbalanced data — a model that never predicts a claim can still score ~77% accuracy. The selected model trades a modest amount of overall accuracy for more than double the recall of the baseline, which is what actually matters for catching risk.
+> ⚠️ **Why not the highest-accuracy model?** Accuracy is misleading on imbalanced data — a model that never predicts a claim can still score ~77% accuracy while catching zero real risk. The selected model trades a modest amount of overall accuracy for **more than double the recall** of the baseline, which is what actually matters for catching risk.
 
 ## ✅ Final Model Evaluation
 
-**XGBoost + SMOTE + RandomizedSearchCV**
+<div align="center">
+
+### 🏆 XGBoost + SMOTE + RandomizedSearchCV
+**The model that ships.**
+
+</div>
 
 Best hyperparameters found:
 ```
@@ -219,10 +236,12 @@ This configuration is not meant for standalone decision-making — it's designed
 
 ## 📌 Business Impact & Recommendations
 
-- **Risk-based underwriting:** Use claim probability scores to inform premium pricing at the point of sale, rather than relying on static rules.
-- **Proactive inspection targeting:** Route high-probability buildings identified at the 0.3 threshold to inspection or risk-mitigation teams before issues arise.
-- **Portfolio monitoring:** Periodically re-score the existing book of business to flag policies whose risk profile has shifted.
-- **Tiered decisioning:** Pair the standard model (balanced precision/recall) with the low-threshold "early warning" version depending on whether the use case favors caution or coverage.
+| 💰 Lever | What It Does |
+|---|---|
+| **Risk-based underwriting** | Use claim probability scores to inform premium pricing at the point of sale, instead of static rules. |
+| **Proactive inspection targeting** | Route high-probability buildings flagged at the 0.3 threshold to inspection or risk-mitigation teams *before* issues arise. |
+| **Portfolio monitoring** | Periodically re-score the existing book of business to catch policies whose risk profile has shifted. |
+| **Tiered decisioning** | Pair the balanced model with the high-sensitivity "early warning" version depending on whether the use case favors caution or coverage. |
 
 ## ⚠️ Limitations
 
